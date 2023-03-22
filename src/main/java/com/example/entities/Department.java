@@ -1,6 +1,12 @@
 package com.example.entities;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "tb_department")
 public class Department {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private String name;
 
