@@ -1,18 +1,18 @@
 package com.example.entities;
 
 public class Department {
-    private int Id;
+    private Long Id;
     private String name;
 
     public Department(){
 
     }
 
-    public int getId() {
+    public Long getId() {
         return Id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         Id = id;
     }
 
