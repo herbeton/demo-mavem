@@ -1,10 +1,17 @@
 package com.example.entities;
 
-public class User {
+import javax.persistence.*;
 
+@Entity
+@Table(name = "tb_user")
+public class User {
+    @javax.persistence.Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private String name;
     private String email;
+    @ManyToOne
+    @JoinColumn(name = "department_id")
     private Department department;
 
     public User(){
