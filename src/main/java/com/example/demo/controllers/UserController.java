@@ -13,11 +13,19 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserRepository repository;
-    @CrossOrigin
-    @ResponseStatus(code = HttpStatus.OK)
     @GetMapping
     public List<User> findAll(){
         List<User> result = repository.findAll();
+        return result;
+    }
+    @GetMapping(value = "/{id}")
+    public User findById(@PathVariable Long id){
+        User result = repository.findById(id).get();
+        return result;
+    }
+    @PostMapping
+    public User insert(@RequestBody User user){
+        User result = repository.save(user);
         return result;
     }
 }
