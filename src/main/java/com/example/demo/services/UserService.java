@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -26,6 +27,7 @@ public class UserService {
         return user;
     }
 
+    @Transactional
     public User insert(@RequestBody User user){
         User userInser = userRepository.save(user);
         return userInser;
