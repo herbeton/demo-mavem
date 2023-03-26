@@ -22,9 +22,8 @@ public class UserController {
     @Autowired
     private UserService userService;
     @GetMapping
-    public List<User> findAll(){
-        List<User> result = userService.findAll();
-        return result;
+    public ResponseEntity<List<User>> findAll(){
+        return userService.findAll();
     }
     @GetMapping(value = "/{id}")
     public User findById(@PathVariable Long id){

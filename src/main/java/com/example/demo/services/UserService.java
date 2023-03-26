@@ -2,6 +2,8 @@ package com.example.demo.services;
 
 import com.example.demo.entities.User;
 import com.example.demo.repositories.UserRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,9 +19,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> findAll(){
-        List<User> users = userRepository.findAll();
-        return users;
+    public ResponseEntity<List<User>> findAll(){
+        return ResponseEntity.status(HttpStatus.OK).body(userRepository.findAll());
     }
 
     public User findById(@PathVariable Long id){
