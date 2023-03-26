@@ -32,4 +32,8 @@ public class UserService {
         User userInser = userRepository.save(user);
         return userInser;
     }
+
+    public boolean exitsEmailUser(String email) {
+        return userRepository.existsByEmail(email);
+    }
 }
