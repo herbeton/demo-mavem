@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -23,8 +24,8 @@ public class UserService {
         return ResponseEntity.status(HttpStatus.OK).body(userRepository.findAll());
     }
 
-    public User findById(@PathVariable Long id){
-        User user = userRepository.findById(id).get();
+    public Optional<User> findById(@PathVariable Long id){
+        Optional<User> user = userRepository.findById(id);
         return user;
     }
 

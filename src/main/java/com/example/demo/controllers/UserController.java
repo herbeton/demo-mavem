@@ -11,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/users")
@@ -26,9 +27,11 @@ public class UserController {
         return userService.findAll();
     }
     @GetMapping(value = "/{id}")
-    public User findById(@PathVariable Long id){
-        User result = userService.findById(id);
-        return result;
+    public ResponseEntity<Object> findById(@PathVariable(value = "id") Long id){
+        Optional<User> result = userService.findById(id);
+        if(!result.isPresent())
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario não encontrado!");
+        return ResponseEntity.status(HttpStatus.OK).body(result.get());
     }
     @PostMapping
     public Object insert(@RequestBody @Validated UserDto user){
