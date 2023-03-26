@@ -38,4 +38,8 @@ public class UserService {
     public boolean exitsEmailUser(String email) {
         return userRepository.existsByEmail(email);
     }
+    @Transactional
+    public void delete(User user) {
+        userRepository.delete(user);
+    }
 }

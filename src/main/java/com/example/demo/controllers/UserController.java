@@ -43,4 +43,12 @@ public class UserController {
         User result = userService.insert(userModel);
         return result;
     }
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Object> deleteUser(@PathVariable(value = "id") Long id){
+        Optional<User> result = userService.findById(id);
+        if(!result.isPresent())
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario não encontrado!");
+        userService.delete(result.get());
+        return ResponseEntity.status(HttpStatus.OK).body("Usuario deletado!");
+    }
 }
