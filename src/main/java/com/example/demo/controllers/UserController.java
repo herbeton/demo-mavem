@@ -52,4 +52,14 @@ public class UserController {
         userService.delete(result.get());
         return ResponseEntity.status(HttpStatus.OK).body("Usuario deletado!");
     }
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Object> updateUser(@PathVariable(value = "id") Long id, @RequestBody @Valid UserDto user){
+        Optional<User> resultUser = userService.findById(id);
+        if(!resultUser.isPresent())
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario não encontrado!");
+        User userNew = new User();
+        BeanUtils.copyProperties(user, userNew);
+        userNew.setId(resultUser.get().getId());
+        return ResponseEntity.status(HttpStatus.OK).body(userService.save(userNew));
+    }
 }
