@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,7 +35,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(result.get());
     }
     @PostMapping
-    public Object insert(@RequestBody @Validated UserDto user){
+    public Object insert(@RequestBody @Valid UserDto user){
         if(userService.exitsEmailUser(user.getEmail())){
             return ResponseEntity.status(HttpStatus.CONFLICT).body("O e-mail já existe!");
         }

@@ -2,15 +2,14 @@ package com.example.demo.dto;
 
 import com.example.demo.entities.Department;
 import com.sun.istack.NotNull;
+import javax.validation.constraints.NotEmpty;
 
 public class UserDto {
-        @NotNull
         private Long Id;
-        @NotNull
+        @NotEmpty
         private String name;
-        @NotNull
+        @NotEmpty
         private String email;
-        @NotNull
         private Department department;
 
         public Long getId() {
