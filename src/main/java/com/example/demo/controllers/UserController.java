@@ -7,9 +7,12 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +23,22 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
-
+    @GetMapping("/hello")
+    public ModelAndView hello(){
+        ModelAndView mv = new ModelAndView("hello");//hello eh o arquivo html
+        mv.addObject("nome", "test-modelAndView");
+        return mv;
+    }
+    @GetMapping("/hello-model")
+    public ModelAndView hello(Model model){
+        model.addAttribute("nome", "test2");
+        return new ModelAndView("hello");
+    }
+    @GetMapping("/hello-servlet")
+    public ModelAndView hello(HttpServletRequest request){
+        request.setAttribute("nome", "test");
+        return new ModelAndView("hello");
+    }
     @Autowired
     private UserService userService;
     @GetMapping
