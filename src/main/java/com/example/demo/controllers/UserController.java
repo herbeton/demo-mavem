@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +23,22 @@ import java.util.Optional;
 public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
+    }
+    @GetMapping("/index")
+    public ModelAndView home(){
+        ModelAndView modelAndView = new ModelAndView("users/index");//users/index eh o arquivo html
+        User user1 = new User(7L,"User1", "user1@example.com");
+        User user2 = new User(8L,"User2", "user2@example.com");
+        User user3 = new User(9L,"User3", "user3@example.com");
+        List<User> listUsers = Arrays.asList(user1, user2, user3);
+        modelAndView.addObject("users", listUsers);
+        return modelAndView;
+    }
+    @GetMapping("/users")
+    public ModelAndView users(){
+        ModelAndView mv = new ModelAndView("users");//hello eh o arquivo html
+        mv.addObject("nome", "test-modelAndView");
+        return mv;
     }
     @GetMapping("/hello")
     public ModelAndView hello(){

@@ -26,6 +26,12 @@ public class User {
 
     }
 
+    public User(Long Id, String name, String email) {
+        this.Id = Id;
+        this.name = name;
+        this.email = email;
+    }
+
     public Long getId() {
         return Id;
     }
