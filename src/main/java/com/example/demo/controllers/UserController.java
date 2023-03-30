@@ -31,7 +31,8 @@ public class UserController {
         User user2 = new User(8L,"User2", "user2@example.com");
         User user3 = new User(9L,"User3", "user3@example.com");
         List<User> listUsers = Arrays.asList(user1, user2, user3);
-        modelAndView.addObject("users", listUsers);
+        List<User> listUsersDB = userService.findAll().getBody();
+        modelAndView.addObject("users", listUsersDB);
         return modelAndView;
     }
     @GetMapping("/users")
