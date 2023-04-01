@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.dto.UserDto;
+import com.example.demo.entities.Department;
 import com.example.demo.entities.User;
 import com.example.demo.services.UserService;
 import org.springframework.beans.BeanUtils;
@@ -21,7 +22,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
-    public UserController(UserService userService) {
+    public UserController(DepartmentService departmentService,UserService userService) {
+        this.departmentService = departmentService;
         this.userService = userService;
     }
     @GetMapping("/index")
@@ -34,7 +36,13 @@ public class UserController {
         List<User> listUsersDB = userService.findAll().getBody();
         modelAndView.addObject("users", listUsersDB);
         return modelAndView;
-    }
+     }
+     @GetMapping("/new")
+     public ModelAndView newUser(){
+         ModelAndView modelAndView = new ModelAndView("users/new");//hello eh o arquivo html
+         modelAndView.addObject("departmentsUser", departmentService.findAll().getBody());
+         return modelAndView;
+     }
     @GetMapping("/users")
     public ModelAndView users(){
         ModelAndView mv = new ModelAndView("users");//hello eh o arquivo html
@@ -59,6 +67,8 @@ public class UserController {
     }
     @Autowired
     private UserService userService;
+    @Autowired
+    private DepartmentService departmentService;
     @GetMapping
     public ResponseEntity<List<User>> findAll(){
         return userService.findAll();
