@@ -21,7 +21,7 @@
         </thead>
         <tbody>
           <tr th:each="users : ${users}">
-            <th class="col-1" scope="row" th:text="${users.Id}">ID</th>
+            <th class="col-1" scope="row" th:text="${users.id}">ID</th>
             <td class="col-4" th:text="${users.name}">Nome do usuario</td>
             <td class="col-2" th:text="${users.email}">E-mail </td>
             <td class="col-2" th:utext="${users.department.name}">Departamento</td>

@@ -24,7 +24,7 @@
         <label class="form-label">Departamento</label>
         <select class="form-select" name="departmentsUser">
           <option th:each="department : ${departmentsUser}"
-                  th:value="${department.Id}" th:text="${department.name}">
+                  th:value="${department.id}" th:text="${department.name}">
           </option>
         </select>
 <!--        <tbody>-->

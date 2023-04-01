@@ -11,7 +11,7 @@ import javax.persistence.Id;
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
     private String name;
 
     public Department(){
@@ -19,11 +19,11 @@ public class Department {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getName() {
