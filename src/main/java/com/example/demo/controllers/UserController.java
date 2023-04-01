@@ -40,7 +40,7 @@ public class UserController {
      @GetMapping("/new")
      public ModelAndView newUser(){
          ModelAndView modelAndView = new ModelAndView("users/new");//hello eh o arquivo html
-         modelAndView.addObject("departmentsUser", departmentService.findAll().getBody());
+         modelAndView.addObject("department", departmentService.findAll().getBody());
          return modelAndView;
      }
     @GetMapping("/users")

@@ -22,8 +22,8 @@
       </div>
       <div class="mb-3">
         <label class="form-label">Departamento</label>
-        <select class="form-select" name="departmentsUser">
-          <option th:each="department : ${departmentsUser}"
+        <select class="form-select" name="department">
+          <option th:each="department : ${department}"
                   th:value="${department.id}" th:text="${department.name}">
           </option>
         </select>
